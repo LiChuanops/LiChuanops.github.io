@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Forklift Pre-Operational Check List 操作前检查表</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="checkbox"] {
+            transform: scale(1.5);
+            margin-right: 10px;
+        }
+
+        h3 {
+            margin-top: 20px;
+        }
+
+        .remarks-input {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+
+        .signature-section {
+            margin-top: 20px;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+
+        .signature-section input[type="text"] {
+            width: 50%;
+        }
+        @media print {
+            .signature-section {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .signature-section input[type="text"] {
+                text-decoration: underline;
+                border: none;
+            }
+
+            .signature-section p {
+                margin: 5px 0;
+            }
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+        .floating-button {
+            position: fixed;
+            bottom: 20px;
+            right: 300px;
+            background-color: #f2f2f2;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .floating-button img {
+            width: 30px;
+            height: 30px;
+        }
+
+        @media print {
+            .floating-button {
+                display: none;
+            }
+        }
+
+    .check-all {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .check-all label {
+        margin-left: 5px;
+    }
+
+    @media print {
+        .check-all {
+            display: none;
+        }
+    }
+
+    .remarks-input {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+    }
+
+    .remarks-input p {
+        margin-bottom: 5px;
+    }
+
+    .frame {
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #f2f2f2;
+        padding: 10px;
+    }
+
+    #remarks {
+        width: 100%;
+        padding: 5px;
+        margin: 0;
+        border: none;
+        outline: none;
+        resize: vertical;
+        min-height: 20px;
+        background-color: #f2f2f2;
+    }
+       #signature-container {
+            border: 2px solid black;
+            padding: 10px; /* Adjust padding as needed */
+            display: inline-block;
+            
+        }
+        
+         #signature-container2 {
+            border: 2px solid black; /* Adjust border properties as needed */
+            padding: 10px; /* Adjust padding as needed */
+            display: inline-block;
+        }
+        @media print {
+            #signature-container,
+            #signature-container2 {
+                border-color: white;
+            }
+        }
+        ul[data-role="tabs"] {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+        }
+
+        ul[data-role="tabs"] li {
+            float: left;
+        }
+
+        ul[data-role="tabs"] li a {
+            display: block;
+            color: #000;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            transition: 0.3s;
+            border-radius: 5px 5px 0 0;
+        }
+
+        ul[data-role="tabs"] li a:hover {
+            background-color: #ddd;
+        }
+
+        ul[data-role="tabs"] li a.active {
+            background-color: #ccc;
+        }
+        @media print {
+            ul[data-role="tabs"] {
+                display: none;
+            }
+        .remove-button {
+            display: block;
+            margin-top: 10px;
+        }
+
+        @media print {
+            .remove-button {
+                display: none;
+            }
+        }
+        .remove-button1 {
+            display: block;
+            margin-top: 10px;
+        }
+
+        @media print {
+            .remove-button1 {
+                display: none;
+            }
+        }
+        @media print {
+            .container {
+                border: 1px solid white;
+            }
+        }
+ul[data-role="tabs"] li a.active {
+    background-color: #ccc; /* Add your desired color for the active tab */
+}
+
+
+
+ </style>
+
+    <script src="https://unpkg.com/signature_pad"></script>
+</head>
+<body>
+
+<ul data-role="tabs" data-expand="true" id="tabs">
+    <li><a class="active" href="#" onclick="switchTab(event)">TOYOTA 橙色大叉车</a></li>
+    <li><a href="#" onclick="switchTab(event)">六号房叉车</a></li>
+    <li><a href="#" onclick="switchTab(event)">大房叉车</a></li>
+    <li><a href="#" onclick="switchTab(event)">白色叉车</a></li>
+    <li><a href="#" onclick="switchTab(event)">B15 叉车</a></li>
+</ul>
+
+<script>
+    function switchTab(e) {
+        const tabs = document.querySelectorAll('#tabs a');
+        tabs.forEach(tab => {
+            tab.classList.remove('active');
+        });
+        e.target.classList.add('active');
+
+        // Add this section to dynamically change the content
+        const modelElement = document.querySelector('#model');
+        const serialElement = document.querySelector('#serial');
+
+        if (e.target.innerText === 'TOYOTA 橙色大叉车') {
+            modelElement.innerText = 'Model : TOYOTA Forklift';
+            serialElement.innerText = 'Serial : 8FBN 25(48V)';
+        } else if (e.target.innerText === '六号房叉车') {
+            modelElement.innerText = 'Model : TOYOTA CR6 Reach-Truck';
+            serialElement.innerText = 'Serial : 6FBR J9-10232(24V)';
+        } else if (e.target.innerText === '大房叉车') {
+            modelElement.innerText = 'Model : TOYOTA CR5 Reach-Truck';
+            serialElement.innerText = 'Serial : 7FBR10 - 51326(48V)';
+        } else if (e.target.innerText === '白色叉车') {
+            modelElement.innerText = 'Model : NICHIYU Reach-Truck';
+            serialElement.innerText = 'Serial : BRA10-50S-400(24V)';
+        } else if (e.target.innerText === 'B15 叉车') {
+            modelElement.innerText = 'Model : MITSUBISHI B15 Forklift';
+            serialElement.innerText = 'Serial : FD20T(F180-00472)';
+        }
+    }
+</script>
+
+<h2>Forklift Pre-Operational Check List 操作前检查表</h2>
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 700px; /* Adjust the width as needed */
+  }
+
+  .item {
+    margin-right: 20px; /* Adjust the gap size as needed */
+  }
+  z
+</style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="item">
+            <p>Date 日期: <input type="date" id="date" placeholder="YYYY-MM-DD"></p>
+        </div>
+
+        <div class="item">
+            <p>Time 时间:
+                <select id="time">
+        <option value="08:30:00">8.30am</option>
+        <option value="09:30:00">9.30am</option>
+        <option value="10:30:00">10.00am</option>
+        <option value="11:30:00">11.30am</option>
+        <option value="12:30:00">12.30pm</option>
+        <option value="13:30:00">1.30pm</option>
+        <option value="14:30:00">2.30pm</option>
+        <option value="15:30:00">3.30pm</option>
+        <option value="16:30:00">4.30pm</option>
+        <option value="17:30:00">5.30pm</option>
+        <option value="18:30:00">6.30pm</option>
+        <option value="19:30:00">7.30pm</option>
+        <option value="20:30:00">8.30pm</option>
+        <option value="21:30:00">9.30pm</option>
+        <option value="22:30:00">10.30pm</option>
+                </select>
+            </p>
+        </div>
+
+        <div class="item">
+            <p>Shift:
+                <select id="shift">
+                    <option value="Day">Day 早班</option>
+                    <option value="Night">Night 晚班</option>
+                </select>
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>
+
+<h3 id="model">Model : TOYOTA Forklift</h3>
+<h3 id="serial">Serial : 8FBN 25(48V)</h3>
+
+<p>1) To be carried out at the start of the working day.每天开工时必须检查叉车</p>
+<p>2) Any defects are to be listed on the sheet, and the supervisor should be notified of the defect.任何损坏部位需填写在表格里，并及时通知主管</p>
+<p>3) Supervisor to arrange repairs of defects. Place "Out of Service" tag if required.主管及时处理有损坏的叉车，如有需要要将“停止服务”标签贴在叉车上</p>
+<p>4) DO NOT attempt to repair the forklift unless you are a qualified or authorized mechanic.除非您有资格证或授权机械师，否则请勿尝试修理叉车</p>
+<p>5) Supervisor to ensure that repairs are signed off by defects in the log when completed.如果叉车以修复，主管需要在列表上填写修复完毕</p>
+<p>6) DO NOT OPERATE A FAULTY FORKLIFT.不允许操作故障的叉车</p>
+<p>7) DO NOT use a mobile phone when operating the forklift.操作叉车时，不允许使用手机</p>
+
+<h3>Visual Check 视觉检查</h3>
+
+<div class="check-all">
+    <input type="checkbox" id="check-all-ok" onchange="checkAll()">
+    <label for="check-all-ok">Please Select if all ok 如果都没问题,请点选</label>
+</div>
+
+<script>
+    function checkAll() {
+        var okCheckboxes = document.querySelectorAll('input[type="checkbox"]:not(#check-all-ok):not([id*="-not-ok"])');
+        var checkAllCheckbox = document.getElementById('check-all-ok');
+
+        okCheckboxes.forEach(function(checkbox) {
+            checkbox.checked = checkAllCheckbox.checked;
+        });
+    }
+</script>
+<table>
+    <tr>
+        <th>1.Battery & Charges</th>
+        <th>Ok</th>
+        <th>Not Ok</th>
+    </tr>
+    <tr>
+        <td>Battery & Water Level / Leakage 电池水</td>
+        <td><input type="checkbox" id="battery-ok"></td>
+        <td><input type="checkbox" id="battery-not-ok"></td>
+    </tr>
+    <tr>
+        <td>Power Connect Socket 电源连接口</td>
+        <td><input type="checkbox" id="power-ok"></td>
+        <td><input type="checkbox" id="power-not-ok"></td>
+    </tr>
+    <tr>
+        <td>Cable Damage/Cut 电缆损坏/断裂</td>
+        <td><input type="checkbox" id="cable-ok"></td>
+        <td><input type="checkbox" id="cable-not-ok"></td>
+    </tr>
+    <tr>
+        <th>2. Leaks & Damage</th>
+        <th>Ok</th>
+        <th>Not Ok</th>
+    </tr>
+    <tr>
+        <td>Any dent/broken part 任何凹痕或破损零件</td>
+        <td><input type="checkbox" id="dent-ok"></td>
+        <td><input type="checkbox" id="dent-not-ok"></td>
+    </tr>
+    <tr>
+        <td>Oil Spots / Leaks 油迹/漏油</td>
+        <td><input type="checkbox" id="oil-ok"></td>
+        <td><input type="checkbox" id="oil-not-ok"></td>
+    </tr>
+    <tr>
+        <th>3. Controls - Directional, Lifting, Tilt</th>
+        <th>Ok</th>
+        <th>Not Ok</th>
+    </tr>
+    <tr>
+        <td>Forward & Reverse Gear 前进及后退控制器</td>
+        <td><input type="checkbox" id="gear-ok"></td>
+        <td><input type="checkbox" id="gear-not-ok"></td>
+    </tr>
+    <tr>
+        <td>Hoist and Lower Control 提升和降低控制器</td>
+        <td><input type="checkbox" id="hoist-ok"></td>
+        <td><input type="checkbox" id="hoist-not-ok"></td>
+    </tr>
+    <tr>
+        <td>Tilt Control 倾斜控制器</td>
+        <td><input type="checkbox" id="tilt-ok"></td>
+        <td><input type="checkbox" id="tilt-not-ok"></td>
+    </tr>
+    <tr>
+        <td>Horn 喇叭</td>
+        <td><input type="checkbox" id="horn-ok"></td>
+        <td><input type="checkbox" id="horn-not-ok"></td>
+    </tr>
+    <tr>
+        <td>Mast Control 桅杆前进和后退控制器</td>
+        <td><input type="checkbox" id="mast-ok"></td>
+        <td><input type="checkbox" id="mast-not-ok"></td>
+    </tr>
+    <tr>
+        <th>4. Light Indicator & Alarm</th>
+        <th>Ok</th>
+        <th>Not Ok</th>
+    </tr>
+    <tr>
+        <td>Stroke Light 行程灯</td>
+        <td><input type="checkbox" id="stroke-ok"></td>
+        <td><input type="checkbox" id="stroke-not-ok"></td>
+    </tr>
+    <tr>
+        <td>Head Lamp 大头灯</td>
+        <td><input type="checkbox" id="lamp-ok"></td>
+        <td><input type="checkbox" id="lamp-not-ok"></td>
+    </tr>
+    <tr>
+        <td>Reverse Alarm 后退警报灯</td>
+        <td><input type="checkbox" id="reverse-ok"></td>
+        <td><input type="checkbox" id="reverse-not-ok"></td>
+    </tr>
+    <tr>
+        <th>5. Fork, Mast, Chain & Pulley</th>
+        <th>Ok</th>
+        <th>Not Ok</th>
+    </tr>
+    <tr>
+        <td>Fork, Mast 桅杆，叉</td>
+        <td><input type="checkbox" id="fork-ok"></td>
+        <td><input type="checkbox" id="fork-not-ok"></td>
+    </tr>
+    <tr>
+        <td>List Chain & Pulley 列条和滑轮</td>
+        <td><input type="checkbox" id="chain-ok"></td>
+        <td><input type="checkbox" id="chain-not-ok"></td>
+    </tr>
+    <tr>
+        <th>6. Steering & Wheels</th>
+        <th>Ok</th>
+        <th>Not Ok</th>
+    </tr>
+    <tr>
+        <td>Steering Wheels 方向操作盘</td>
+        <td><input type="checkbox" id="steering-ok"></td>
+        <td><input type="checkbox" id="steering-not-ok"></td>
+    </tr>
+    <tr>
+        <td>Wheels 车轮</td>
+        <td><input type="checkbox" id="wheels-ok"></td>
+        <td><input type="checkbox" id="wheels-not-ok"></td>
+    </tr>
+    <tr>
+        <td>Foot Brake 脚刹车板</td>
+        <td><input type="checkbox" id="brake-ok"></td>
+        <td><input type="checkbox" id="brake-not-ok"></td>
+    </tr>
+    <tr>
+        <th>7. Abnormalities 异常</th>
+        <th>Ok</th>
+        <th>Not Ok</th>
+    </tr>
+    <tr>
+        <td>Noise / Smoke 噪音/烟雾</td>
+        <td><input type="checkbox" id="noise-ok"></td>
+        <td><input type="checkbox" id="noise-not-ok"></td>
+    </tr>
+</table>
+
+<div class="remarks-input">
+    <p>Remarks 备注 :</p>
+    <div class="frame">
+        <textarea id="remarks" placeholder="Please indicate the problem in detail...请详细说明问题"></textarea>
+    </div>
+</div>
+
+
+
+<div class="signature-section">
+<p> I hereby had checked and confirmed that forklift is in good condition.我特此声明检查并确保叉车处于良好的工作状态</p>
+    <p>Operator Name 操作员名字 : <input type="text" id="name"></p>
+    <p>Signature 签名 :</p>
+</div>
+</div>
+
+<div id="signature-container">
+    <canvas id="signature-pad1" width=200 height=100></canvas>
+</div>
+
+<button class="remove-button" onclick="removeSignature('signature-pad1')">Remove 取消</button>
+
+<script>
+    var canvas1 = document.getElementById('signature-pad1');
+    var signaturePad1 = new SignaturePad(canvas1);
+
+    function removeSignature(id) {
+        var signaturePad = new SignaturePad(document.getElementById(id));
+        signaturePad.clear(); // This will clear the signature from the canvas
+    }
+</script>
+
+
+<div class="signature-section">
+    <p> I hereby had endosed that proper checks were being done & there is no abnormality. 我特此声明检已检查完毕，并没发现任何异常</p>
+    <p>Supervisor Name 主管名字 : <input type="text" id="name"></p>
+    <p>Signature 签名 :</p>
+</div>
+
+<div id="signature-container2">
+    <canvas id="signature-pad2" width=200 height=100></canvas>
+</div>
+
+<button class="remove-button1" onclick="removeSignature('signature-pad2')">Remove 取消</button>
+
+<script>
+    var canvas2 = document.getElementById('signature-pad2');
+    var signaturePad2 = new SignaturePad(canvas2);
+
+    function removeSignature(id) {
+        var signaturePad = new SignaturePad(document.getElementById(id));
+        signaturePad.clear(); // This will clear the signature from the canvas
+    }
+</script>
+
+    <button onclick="window.print()" class="floating-button">
+        <img src="https://img.icons8.com/material-outlined/24/000000/print--v1.png" alt="Print Icon">
+    </button>
+
+
+
+</body>
+</html>
